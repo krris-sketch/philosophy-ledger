@@ -8,7 +8,9 @@ const INITIAL_TEAM = {
   "Yesha Gupta": { role: "Technical Architect", philosophy: "Build not just for the present, but for the legacy left behind." },
   "Kiruthika": { role: "Research Specialist", philosophy: "Every complex problem has a simple, elegant solution hidden within." },
   "Lakkakula Harshitha": { role: "Integrator", philosophy: "Fluidity in engineering allows for innovation in rigid spaces." },
-  "Jaza KP": { role: "Execution Lead", philosophy: "Precision is the difference between a project and a masterpiece." }
+  "Jaza KP": { role: "Execution Lead", philosophy: "Precision is the difference between a project and a masterpiece." },
+  "Shahir": { role: "Systems Optimizer", philosophy: "The goal of engineering is to make the complex feel effortless." },
+  "Kartikeyan": { role: "Quality Analyst", philosophy: "Integrity in design is the foundation of every lasting structure." }
 };
 
 export default function App() {
@@ -103,7 +105,6 @@ export default function App() {
                   onClick={() => setSelectedAssignment(item)}
                   className="group relative w-full border-b border-white/5 bg-transparent hover:bg-white/[0.02] transition-all duration-500 cursor-pointer overflow-hidden"
                 >
-                  {/* Image Peek on Hover */}
                   {item.images[0] && (
                     <img 
                       src={item.images[0]} 
@@ -237,7 +238,7 @@ export default function App() {
                   </label>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {newImages.map((img, i) => (
-                      <div key={i} className="w-12 h-12 border border-white/10 overflow-hidden"><img src={img} className="w-full h-full object-cover" /></div>
+                      <div key={i} className="w-12 h-12 border border-white/10 overflow-hidden"><img src={img} className="w-full h-full object-cover" alt="" /></div>
                     ))}
                   </div>
                 </div>
