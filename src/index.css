@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    /* Fixed the v4 @apply issue by using standard properties for core body resets */
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    transition: background-color 1s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  /* 1. CURSOR GLOW (Spotlight) */
+  .spotlight::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.5s;
+    background: radial-gradient(
+      600px circle at var(--x) var(--y), 
+      rgba(234, 179, 8, 0.15), 
+      transparent 40%
+    );
+    z-index: 1;
+  }
+  .spotlight:hover::before {
+    opacity: 1;
+  }
+
+  /* 2. TITLE SHINE */
+  @keyframes shine {
+    0% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .text-shine {
+    background: linear-gradient(
+      to right,
+      #ca8a04 20%,
+      #facc15 40%,
+      #facc15 60%,
+      #ca8a04 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shine 3s linear infinite;
+  }
+
+  /* 3. SCROLLBAR HIDE */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* 4. SEAMLESS HAZE UTILITY */
+  /* This helps the GradualBlur component look smoother on high-refresh screens */
+  .mask-haze {
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+  }
+}

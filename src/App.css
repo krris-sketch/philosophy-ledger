@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Only native CSS animations here to avoid Tailwind config errors */
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.logo-carousel {
+  display: flex;
+  width: 200%;
+  animation: scroll 30s linear infinite;
+}
