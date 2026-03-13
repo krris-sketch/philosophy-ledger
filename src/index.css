@@ -1,70 +1,69 @@
 @import "tailwindcss";
 
-@layer base {
-  body {
-    /* Fixed the v4 @apply issue by using standard properties for core body resets */
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    transition: background-color 1s ease;
-    -webkit-font-smoothing: antialiased;
-  }
+/* 1. Global Base Resets */
+@theme {
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --color-ruby: #e0115f;
+  --color-gold: #d4af37;
 }
 
-@layer utilities {
-  /* 1. CURSOR GLOW (Spotlight) */
-  .spotlight::before {
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #050102; /* Matches your midnight var */
+  transition: background-color 1s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 2. Custom Utilities for Tailwind v4 */
+@utility spotlight {
+  position: relative;
+  &::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: inherit;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.5;
     background: radial-gradient(
       600px circle at var(--x) var(--y), 
-      rgba(234, 179, 8, 0.15), 
+      rgba(212, 175, 55, 0.15), 
       transparent 40%
     );
     z-index: 1;
+    pointer-events: none;
   }
-  .spotlight:hover::before {
+  &:hover::before {
     opacity: 1;
   }
+}
 
-  /* 2. TITLE SHINE */
-  @keyframes shine {
-    0% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+@utility text-shine {
+  background: linear-gradient(
+    to right,
+    #ca8a04 20%,
+    #facc15 40%,
+    #facc15 60%,
+    #ca8a04 80%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shine 3s linear infinite;
+}
 
-  .text-shine {
-    background: linear-gradient(
-      to right,
-      #ca8a04 20%,
-      #facc15 40%,
-      #facc15 60%,
-      #ca8a04 80%
-    );
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shine 3s linear infinite;
-  }
-
-  /* 3. SCROLLBAR HIDE */
-  .no-scrollbar::-webkit-scrollbar {
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
     display: none;
   }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+}
 
-  /* 4. SEAMLESS HAZE UTILITY */
-  /* This helps the GradualBlur component look smoother on high-refresh screens */
-  .mask-haze {
-    mask-composite: exclude;
-    -webkit-mask-composite: destination-out;
-  }
+@keyframes shine {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
